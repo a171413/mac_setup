@@ -1,9 +1,10 @@
 #!/usr/bin/sh
 
 # keyboard settings
-echo "# keyboard settings"
-defaults write -g InitialKeyRepeat -int 10
-defaults write -g KeyRepeat -int 1
+# キーボードのリピートについて設定されるのでやりたい人だけコメントアウトを外して実行してくださいな
+#echo "# keyboard settings"
+#defaults write -g InitialKeyRepeat -int 10
+#defaults write -g KeyRepeat -int 1
 
 # https://brew.sh/index_ja
 echo "# install brew"
@@ -82,9 +83,17 @@ git clone https://github.com/nhdaly/tmux-scroll-copy-mode ~/clone/path
 echo "# install fish"
 brew install fish
 
+echo "# fish settings"
+touch ~/.config/fish/config.fish
+echo "source ~/mac_setup/settings/.config.fish" >> ~/.config/fish/config.fish
 
 echo "# install fisherman"
 curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
+
+echo "# install fisherman plugin"
+fisher install rbenv pyenv fzf decors/fish-ghq
+
+curl -L http://get.oh-my.fish | fish
 
 echo "# change default shell"
 sudo sh -c "echo '/usr/local/bin/fish' >> /etc/shells"
@@ -93,15 +102,8 @@ chsh -s /usr/local/bin/fish
 
 # おそらくここで一旦切れる
 #<<COMMENTOUT
-echo "# fish settings"
-touch ~/.config/fish/config.fish
-echo "source ~/mac_setup/settings/.config.fish" >> ~/.config/fish/config.fish
-
-echo "# install fisherman plugin"
-fisher install rbenv pyenv fzf decors/fish-ghq
 
 echo "# omf install / set theme"
-curl -L http://get.oh-my.fish | fish
 omf install agnoster
 fisher omf/theme-agnoster
 git clone https://github.com/dracula/iterm.git ~/mac_setup/settings/dracula
