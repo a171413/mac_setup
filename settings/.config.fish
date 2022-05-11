@@ -50,7 +50,7 @@ if status --is-interactive
 
   # docker
   alias dr="sh ~/docker_command.sh"
-  alias dcdu="docker-compose down; docker-compose up"
+  alias dcdu="docker compose down; docker compose up"
   alias dsrs="docker-sync stop; docker-sync start"
   alias docker_all_image_rmi="docker images -aq | xargs docker rmi -f"
   alias docker_all_container_rmi="docker ps -aq | xargs docker rm -f"
